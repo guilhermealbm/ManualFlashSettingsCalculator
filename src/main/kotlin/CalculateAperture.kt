@@ -1,12 +1,15 @@
 import kotlin.math.abs
 
 val distances = listOf(1.2, 1.8, 2.5, 3.5, 5.0, 7.0)
+val apertures = listOf(1.2, 1.4, 2, 2.8, 4, 5.6, 8, 11, 16, 22, 32, 45)
 
 fun calculateAperture(iso_: String?, distance_: String?) : String {
     val iso = convertIso(iso_)
     val distance = convertDistance(distance_)
     distance?.let {
-        return ""
+        val distanceIndex = distances.reversed().indexOf(it)
+        val isoIndex = iso.index
+        return "Set your apperture to ${apertures[distanceIndex + isoIndex]}"
     } ?: run {
         return "Unable to convert distance."
     }
