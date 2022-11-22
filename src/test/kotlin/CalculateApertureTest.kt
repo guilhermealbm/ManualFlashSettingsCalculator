@@ -1,4 +1,5 @@
 import kotlin.test.Test
+import kotlin.test.assertContains
 import kotlin.test.assertEquals
 
 class CalculateApertureTest {
@@ -52,6 +53,36 @@ class CalculateApertureTest {
     fun convertDistanceNull() {
         val distance = convertDistance(null)
         assertEquals(distance, null)
+    }
+
+    @Test
+    fun calculateApertureSuccess() {
+        val result = calculateAperture("100", "2.5")
+        assertContains(result, "5.6")
+    }
+
+    @Test
+    fun calculateApertureSuccessFloor() {
+        val result = calculateAperture("100", "2.6")
+        assertContains(result, "5.6")
+    }
+
+    @Test
+    fun calculateApertureSuccessCeil() {
+        val result = calculateAperture("100", "3.4")
+        assertContains(result, "4")
+    }
+
+    @Test
+    fun calculateApertureSuccessFixIso() {
+        val result = calculateAperture("abc", "2.5")
+        assertContains(result, "5.6")
+    }
+
+    @Test
+    fun calculateApertureFailure() {
+        val result = calculateAperture("100", "abc")
+        assertContains(result, "Unable to convert distance.")
     }
 
 }

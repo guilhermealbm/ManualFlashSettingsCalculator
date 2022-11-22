@@ -10,7 +10,7 @@ fun calculateAperture(iso_: String?, distance_: String?) : String {
     distance?.let {
         val distanceIndex = distances.reversed().indexOf(it)
         val isoIndex = iso.index
-        return "Set your apperture to ${apertures[distanceIndex + isoIndex]}"
+        return "Set your aperture to ${apertures[distanceIndex + isoIndex]}"
     } ?: run {
         return "Unable to convert distance."
     }
